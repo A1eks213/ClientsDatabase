@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clients</title>
+  <script src="./choices.min.js"></script>
+  <script src="./tippy.min.js"></script>
+  <link rel="stylesheet" href="choices.min.css">
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="tippy.css">
+  <script defer src="./clients.js"></script>
+  <link rel="stylesheet" href="clients.css">
+</head>
+
+<body>
+  <div id="blackout"></div>
+  <header class="header">
+    <img src="./img/logo.png" alt="Логотип" class="header-logo">
+    <input type="text" class="header-input" id="header-input" placeholder="Введите запрос">
+  </header>
+  <section class="section-main">
+    <div class="container" id="container">
+      <h1 class="titleClients">Клиенты</h1>
+      <table class="table" id="table">
+        <th>
+          <button class="btnSort btnSortId" id="btnSortId">ID
+            <svg width="8" height="8" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M3.49691e-07 4L0.705 4.705L3.5 1.915L3.5 8L4.5 8L4.5 1.915L7.29 4.71L8 4L4 -3.49691e-07L3.49691e-07 4Z"
+                fill="#9873FF" />
+            </svg>
+          </button>
+        </th>
+        <th>
+          <button class="btnSort button-SNM" id="btnSortSNM">Фамилия Имя Отчество
+            <svg width="8" height="8" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 4L7.295 3.295L4.5 6.085L4.5 0L3.5 0L3.5 6.085L0.71 3.29L0 4L4 8L8 4Z" fill="#9873FF" />
+            </svg>
+            <span>А-Я</span>
+          </button>
+        </th>
+        <th>
+          <button class="btnSort btnSortDate" id="btnSortDate">Дата и время создания
+            <svg width="8" height="8" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 4L7.295 3.295L4.5 6.085L4.5 0L3.5 0L3.5 6.085L0.71 3.29L0 4L4 8L8 4Z" fill="#9873FF" />
+            </svg>
+          </button>
+        </th>
+        <th>
+          <button class="btnSort btnSortChange" id="btnSortChange">Последнее изменение
+            <svg width="8" height="8" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 4L7.295 3.295L4.5 6.085L4.5 0L3.5 0L3.5 6.085L0.71 3.29L0 4L4 8L8 4Z" fill="#9873FF" />
+            </svg>
+          </button>
+        </th>
+        <th class="tdContacts">Контакты</th>
+        <th class="tdActions">Действия</th>
+        <tbody class="tbody" id="tbody">
+        </tbody>
+      </table>
+      <button class="btnAddClient" id="btnAddClient">
+        <svg width="23" height="16"  fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14.5 8C16.71 8 18.5 6.21 18.5 4C18.5 1.79 16.71 0 14.5 0C12.29 0 10.5 1.79 10.5 4C10.5 6.21 12.29 8 14.5 8ZM5.5 6V3H3.5V6H0.5V8H3.5V11H5.5V8H8.5V6H5.5ZM14.5 10C11.83 10 6.5 11.34 6.5 14V16H22.5V14C22.5 11.34 17.17 10 14.5 10Z" fill="#9873FF"/>
+        </svg>
+        Добавить клиента
+      </button>
+    </div>
+  </section>
+  <!-- Див для создания нового клиента -->
+  <div class="newClientDiv" id="newClientDiv">
+    <div class="row">
+      <h2 class="formTitle formTitleNew">Новый клиент</h2>
+      <button class="closeBtn" id="closeBtnInFormCreate">
+        <svg width="29" height="29" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M22.2333 7.73333L21.2666 6.76666L14.4999 13.5334L7.73324 6.7667L6.76658 7.73336L13.5332 14.5L6.7666 21.2667L7.73327 22.2333L14.4999 15.4667L21.2666 22.2334L22.2332 21.2667L15.4666 14.5L22.2333 7.73333Z" fill="#B0B0B0"/>
+        </svg>
+      </button>
+    </div>
+    <form  target="myIFR" class="formCreateChange" id="formCreate">
+      <input type="text" class="input-add" placeholder="Фамилия*" id="input-surname">
+      <span class="errorSpan" id="errorSpanSurnameCreate"></span>
+      <input type="text" class="input-add" placeholder="Имя*" id="input-name">
+      <span class="errorSpan" id="errorSpanNameCreate"></span>
+      <input type="text" class="input-add" placeholder="Отчество" id="input-lastname">
+      <span class="errorSpan" id="errorSpanLastnameCreate"></span>
+      <div class="contactsDivCreate" id="contactsDivCreate">
+        <button class="btnAddContact" id="btnAddContactCreate" type="button">
+          Добавить контакт
+        </button>
+      </div>
+      <span class="validatorCreate" id="validatorCreate"></span>
+      <button class="btn-save" id="btn-save">Сохранить</button>
+      <button class="btn-close" id="btn-close" type="button">Отмена</button>
+    </form>
+  </div>
+  <!-- Див для изменения данных клиента -->
+  <div class="changeClientDiv" id="changeClientDiv">
+    <div class="row">
+      <h2 class="formTitle">Изменить данные</h2>
+      <span class="changingId" id="changingId">ID:</span>
+      <button class="closeBtn" id="closeBtnInFormChange">
+        <svg width="29" height="29" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M22.2333 7.73333L21.2666 6.76666L14.4999 13.5334L7.73324 6.7667L6.76658 7.73336L13.5332 14.5L6.7666 21.2667L7.73327 22.2333L14.4999 15.4667L21.2666 22.2334L22.2332 21.2667L15.4666 14.5L22.2333 7.73333Z" fill="#B0B0B0"/>
+        </svg>
+      </button>
+    </div>
+    <form class="formCreateChange formChange" id="formChange">
+      <span class="spanChangeClient">Фамилия*</span>
+      <input type="text" class="input-add" id="changeInputSurname">
+      <span class="errorSpan" id="errorSpanSurnameChange"></span> 
+      <span class="spanChangeClient">Имя*</span>
+      <input type="text" class="input-add" id="changeInputName">
+      <span class="errorSpan" id="errorSpanNameChange"></span>
+      <span class="spanChangeClient">Отчество </span>
+      <input type="text" class="input-add" id="changeInputLastname">
+      <span class="errorSpan" id="errorSpanLastnameChange"></span>
+      <div class="contactsDivChange" id="contactsDivChange">
+        <button class="btnAddContact" id="btnAddContactChange" type="button">
+          Добавить контакт
+        </button>
+      </div>
+      <span class="validatorChange" id="validatorChange"></span>
+      <button class="btn-save" id="btnSaveChange">Сохранить</button>
+      <button class="btnDeleteChange" id="btnDeleteChange" type="button">Удалить клиента</button>
+    </form>
+    <iframe name="myIFR" style="display: none"></iframe>
+  </div>
+  <script src="./inputmask.min.js"></script>
+  <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
+  <script src="./just-validate.min.js"></script>
+</body>
+
+</html>
